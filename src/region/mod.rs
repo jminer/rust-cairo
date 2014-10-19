@@ -1,6 +1,8 @@
 use libc;
 use std;
 
+pub mod overlap;
+
 pub struct Region {
   pub opaque: *mut libc::c_void
 }
@@ -194,13 +196,4 @@ pub struct Rectangle {
   y: libc::c_int,
   width: libc::c_int,
   height: libc::c_int
-}
-
-pub mod overlap {
-  #[repr(i32)]
-  pub enum Overlap {
-    In = 0,
-    Out = 1,
-    Part = 2
-  }
 }

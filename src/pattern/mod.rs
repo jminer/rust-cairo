@@ -1,6 +1,10 @@
 use libc;
 use std;
 
+pub mod extend;
+pub mod filter;
+pub mod pattern_type;
+
 pub struct Pattern {
   pub opaque: *mut libc::c_void
 }
@@ -329,39 +333,4 @@ impl std::ops::Drop for Pattern {
 
 extern {
   fn cairo_pattern_destroy(self_arg: *mut libc::c_void);
-}
-
-
-pub mod extend {
-  #[repr(i32)]
-  pub enum Extend {
-    None = 0,
-    Repeat = 1,
-    Reflect = 2,
-    Pad = 3
-  }
-}
-
-pub mod filter {
-  #[repr(i32)]
-  pub enum Filter {
-    Fast = 0,
-    Good = 1,
-    Best = 2,
-    Nearest = 3,
-    Bilinear = 4,
-    Gaussian = 5
-  }
-}
-
-pub mod pattern_type {
-  #[repr(i32)]
-  pub enum PatternType {
-    Solid = 0,
-    Surface = 1,
-    Linear = 2,
-    Radial = 3,
-    Mesh = 4,
-    RasterSource = 5
-  }
 }

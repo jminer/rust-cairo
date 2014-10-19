@@ -1,6 +1,14 @@
 use libc;
 use std;
 
+pub mod cluster_flags;
+pub mod font_type;
+pub mod slant;
+pub mod weight;
+pub mod subpixel_order;
+pub mod hint_style;
+pub mod hint_metrics;
+
 pub struct Options {
   pub opaque: *mut libc::c_void
 }
@@ -391,71 +399,4 @@ pub struct TextExtents {
   height: f64,
   max_x_advance: f64,
   max_y_advance: f64
-}
-
-pub mod cluster_flags {
-  #[repr(i32)]
-  pub enum ClusterFlags {
-    Forwards = 0,
-    Backwards = 1
-  }
-}
-
-pub mod font_type {
-  #[repr(i32)]
-  pub enum FontType {
-    Toy = 0,
-    FT = 1,
-    Win32 = 2,
-    Quartz = 3,
-    User = 4
-  }
-}
-
-pub mod slant {
-  #[repr(i32)]
-  pub enum Slant {
-    Normal = 0,
-    Italic = 1,
-    Oblique = 2
-  }
-}
-
-pub mod weight {
-  #[repr(i32)]
-  pub enum Weight {
-    Normal = 0,
-    Bold = 1
-  }
-}
-
-pub mod subpixel_order {
-  #[repr(i32)]
-  pub enum SubpixelOrder {
-    Default = 0,
-    RGB = 1,
-    BGR = 2,
-    VRGB = 3,
-    VBGR = 4
-  }
-}
-
-pub mod hint_style {
-  #[repr(i32)]
-  pub enum HintStyle {
-    Default = 0,
-    None = 1,
-    Slight = 2,
-    Medium = 3,
-    Full = 4
-  }
-}
-
-pub mod hint_metrics {
-  #[repr(i32)]
-  pub enum HintMetrics {
-    Default = 0,
-    Off = 1,
-    On = 2
-  }
 }

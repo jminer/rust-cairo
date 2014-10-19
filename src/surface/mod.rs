@@ -1,6 +1,10 @@
 use libc;
 use std;
 
+pub mod content;
+pub mod surface_type;
+pub mod format;
+
 #[repr(i32)]
 pub enum SVGVersion {
   SVGVersion_1_1 = 0,
@@ -260,58 +264,4 @@ impl std::ops::Drop for Surface {
 
 extern {
   fn cairo_surface_destroy(self_arg: *mut libc::c_void);
-}
-
-
-pub mod content {
-  #[repr(i32)]
-  pub enum Content {
-    Color = 4096,
-    Alpha = 8192,
-    ColorAlpha = 12288
-  }
-}
-
-pub mod surface_type {
-  #[repr(i32)]
-  pub enum SurfaceType {
-    Image = 0,
-    PDF = 1,
-    PS = 2,
-    XLib = 3,
-    XCB = 4,
-    Glitz = 5,
-    Quartz = 6,
-    Win32 = 7,
-    BeOS = 8,
-    DirectFB = 9,
-    SVG = 10,
-    OS2 = 11,
-    Win32Printing = 12,
-    QuartzImage = 13,
-    Script = 14,
-    Qt = 15,
-    Recording = 16,
-    VG = 17,
-    GL = 18,
-    DRM = 19,
-    Tee = 20,
-    XML = 21,
-    Skia = 22,
-    Subsurface = 23,
-    CoGL = 24
-  }
-}
-
-pub mod format {
-  #[repr(i32)]
-  pub enum Format {
-    Invalid = -1,
-    ARGB32 = 0,
-    RGB24 = 1,
-    A8 = 2,
-    A1 = 3,
-    RGB16_565 = 4,
-    RGB30 = 5
-  }
 }
