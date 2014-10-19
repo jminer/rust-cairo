@@ -1,0 +1,5 @@
+[package]
+
+name = "rust-cairo"
+version = "0.0.1"
+authors = ["Félix Saparelli <felix@passcod.name>"]
