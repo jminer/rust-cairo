@@ -5,12 +5,14 @@ pub mod content;
 pub mod surface_type;
 pub mod format;
 
+#[allow(non_camel_case_types)]
 #[repr(i32)]
 pub enum SVGVersion {
   SVGVersion_1_1 = 0,
   SVGVersion_1_2 = 1
 }
 
+#[repr(C)]
 pub struct Surface {
   pub opaque: *mut libc::c_void
 }
@@ -203,9 +205,8 @@ impl Surface {
 
   pub fn svg_version_to_string(version: SVGVersion) -> std::string::String {
     unsafe {
-      use std::c_str::ToCStr;
       let foreign_result = cairo_svg_version_to_string(version);
-      return std::c_str::CString::new(foreign_result as *const i8, false).as_str().unwrap().to_owned();
+      return std::c_str::CString::new(foreign_result as *const i8, false).as_str().unwrap().to_string();
     }
   }
 }

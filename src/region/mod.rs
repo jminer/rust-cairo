@@ -190,7 +190,7 @@ extern {
   fn cairo_region_destroy(self_arg: *mut libc::c_void);
 }
 
-
+#[repr(C)]
 pub struct Rectangle {
   x: libc::c_int,
   y: libc::c_int,

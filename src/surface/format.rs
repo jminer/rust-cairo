@@ -1,3 +1,4 @@
+#[allow(non_camel_case_types)]
 #[repr(i32)]
 pub enum Format {
   Invalid = -1,

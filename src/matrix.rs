@@ -1,6 +1,6 @@
-use libc;
 use std;
 
+#[repr(C)]
 pub struct Matrix {
   xx: f64,
   yx: f64,

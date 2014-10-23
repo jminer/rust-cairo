@@ -158,9 +158,8 @@ impl FontFace {
 
   pub fn toy_get_family(&mut self) -> std::string::String {
     unsafe {
-      use std::c_str::ToCStr;
       let foreign_result = cairo_toy_font_face_get_family(self.opaque);
-      return std::c_str::CString::new(foreign_result as *const i8, false).as_str().unwrap().to_owned();
+      return std::c_str::CString::new(foreign_result as *const i8, false).as_str().unwrap().to_string();
     }
   }
 
@@ -372,18 +371,20 @@ extern {
   fn cairo_scaled_font_destroy(self_arg: *mut libc::c_void);
 }
 
-
+#[repr(C)]
 pub struct Glyph {
   index: libc::c_ulong,
   x: f64,
   y: f64
 }
 
+#[repr(C)]
 pub struct Cluster {
   num_bytes: libc::c_int,
   num_glyphs: libc::c_int
 }
 
+#[repr(C)]
 pub struct FontExtents {
   ascent: f64,
   descent: f64,
@@ -392,6 +393,7 @@ pub struct FontExtents {
   max_y_advance: f64
 }
 
+#[repr(C)]
 pub struct TextExtents {
   x_bearing: f64,
   y_bearing: f64,
