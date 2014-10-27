@@ -1,1 +1,8 @@
 language: rust
+env:
+  global:
+    - secure: BnHLAfu+09Yz225IgBcL97R6qX8HtU4m96T6hBJYu/C4O7ZNHgcUIUBRWLZ6owDQwqCVvWuLtI3xY84jX4drDSnOjnl9zchHqV7LBAV+nLpE4qTp4QPLMTcc6IiM47LR9FztIFzqQGs99mej+GTi1/Z4Sof7cTcut4iTfQOp090=
+after_script:
+  - cargo doc
+  - mv target/doc doc
+  - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
