@@ -177,7 +177,7 @@ impl Surface {
   pub fn create_from_png(filename: &str) -> Surface {
     unsafe {
       use std::c_str::ToCStr;
-      let foreign_result = cairo_image_surface_create_from_png(filename.to_c_str().unwrap() as *mut i8);
+      let foreign_result = cairo_image_surface_create_from_png(filename.to_c_str().as_ptr() as *mut i8);
       return Surface { opaque: foreign_result as *mut libc::c_void };
     }
   }
@@ -185,7 +185,7 @@ impl Surface {
   pub fn write_to_png(&mut self, filename: &str) -> super::Status {
     unsafe {
       use std::c_str::ToCStr;
-      let foreign_result = cairo_surface_write_to_png(self.opaque, filename.to_c_str().unwrap() as *mut i8);
+      let foreign_result = cairo_surface_write_to_png(self.opaque, filename.to_c_str().as_ptr() as *mut i8);
       return foreign_result;
     }
   }
@@ -193,7 +193,7 @@ impl Surface {
   pub fn create_svg(&mut self, filename: &str, width: f64, height: f64) {
     unsafe {
       use std::c_str::ToCStr;
-      cairo_svg_surface_create(self.opaque, filename.to_c_str().unwrap() as *mut i8, width, height);
+      cairo_svg_surface_create(self.opaque, filename.to_c_str().as_ptr() as *mut i8, width, height);
     }
   }
 

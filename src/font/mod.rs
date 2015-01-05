@@ -151,7 +151,7 @@ impl FontFace {
   pub fn create_toy(family: &str, slant: slant::Slant, weight: weight::Weight) -> FontFace {
     unsafe {
       use std::c_str::ToCStr;
-      let foreign_result = cairo_toy_font_face_create(family.to_c_str().unwrap() as *mut i8, slant, weight);
+      let foreign_result = cairo_toy_font_face_create(family.to_c_str().as_ptr() as *mut i8, slant, weight);
       return FontFace { opaque: foreign_result as *mut libc::c_void };
     }
   }
@@ -266,7 +266,7 @@ impl ScaledFont {
     unsafe {
       use std::c_str::ToCStr;
       let mut extents:TextExtents = std::intrinsics::init();
-      cairo_scaled_font_text_extents(self.opaque, utf8.to_c_str().unwrap() as *mut i8, &mut extents);
+      cairo_scaled_font_text_extents(self.opaque, utf8.to_c_str().as_ptr() as *mut i8, &mut extents);
       return extents;
     }
   }

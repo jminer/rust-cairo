@@ -1,3 +1,5 @@
+#![allow(missing_copy_implementations)]
+extern crate num;
 extern crate libc;
 #[link(name = "cairo")] extern {}
 
@@ -186,9 +188,10 @@ impl Cairo {
   pub fn get_dash(&mut self) -> (Vec<f64>, f64) {
     unsafe {
       use std::intrinsics;
-      use std::num::Zero;
+      use std::iter::repeat;
+      use num::traits::Zero;
       let dashes_len = self.get_dash_count() as uint;
-      let mut dashes:Vec<f64> = Vec::from_elem(dashes_len, Zero::zero());
+      let mut dashes:Vec<f64> = repeat(Zero::zero()).take(dashes_len).collect();
       let mut offset:f64 = intrinsics::init();
       cairo_get_dash(self.opaque, dashes.as_mut_ptr(), &mut offset);
       return (dashes, offset);
@@ -528,7 +531,7 @@ impl Cairo {
   pub fn text_path(&mut self, text_path: &str) {
     unsafe {
       use std::c_str::ToCStr;
-      cairo_text_path(self.opaque, text_path.to_c_str().unwrap() as *mut i8);
+      cairo_text_path(self.opaque, text_path.to_c_str().as_ptr() as *mut i8);
     }
   }
 
@@ -646,7 +649,7 @@ impl Cairo {
   pub fn select_font_face(&mut self, family: &str, slant: font::slant::Slant, weight: font::weight::Weight) {
     unsafe {
       use std::c_str::ToCStr;
-      cairo_select_font_face(self.opaque, family.to_c_str().unwrap() as *mut i8, slant, weight);
+      cairo_select_font_face(self.opaque, family.to_c_str().as_ptr() as *mut i8, slant, weight);
     }
   }
 
@@ -712,7 +715,7 @@ impl Cairo {
   pub fn show_text(&mut self, utf8: &str) {
     unsafe {
       use std::c_str::ToCStr;
-      cairo_show_text(self.opaque, utf8.to_c_str().unwrap() as *mut i8);
+      cairo_show_text(self.opaque, utf8.to_c_str().as_ptr() as *mut i8);
     }
   }
 
@@ -725,7 +728,7 @@ impl Cairo {
   pub fn show_text_glyphs(&mut self, utf8: &str, glyphs: &mut [font::Glyph], clusters: &mut [font::Cluster], cluster_flags: font::cluster_flags::ClusterFlags) {
     unsafe {
       use std::c_str::ToCStr;
-      cairo_show_text_glyphs(self.opaque, utf8.to_c_str().unwrap() as *mut i8, -1, glyphs.as_mut_ptr(), glyphs.len() as libc::c_int, clusters.as_mut_ptr(), clusters.len() as libc::c_int, cluster_flags);
+      cairo_show_text_glyphs(self.opaque, utf8.to_c_str().as_ptr() as *mut i8, -1, glyphs.as_mut_ptr(), glyphs.len() as libc::c_int, clusters.as_mut_ptr(), clusters.len() as libc::c_int, cluster_flags);
     }
   }
 
@@ -743,7 +746,7 @@ impl Cairo {
       use std::c_str::ToCStr;
       use std::intrinsics;
       let mut extents:font::TextExtents = intrinsics::init();
-      cairo_text_extents(self.opaque, utf8.to_c_str().unwrap() as *mut i8, &mut extents);
+      cairo_text_extents(self.opaque, utf8.to_c_str().as_ptr() as *mut i8, &mut extents);
       return extents;
     }
   }
