@@ -1,7 +1,11 @@
 [package]
 name = "cairo"
-version = "0.0.2"
-authors = ["Félix Saparelli <felix@passcod.name>", "Tal Levy <tal@fastmail.com>"]
+version = "0.0.3"
+authors = [
+  "Félix Saparelli <felix@passcod.name>",
+  "Tal Levy <tal@fastmail.com>",
+  "faineance"
+]
 
 [dependencies]
 num = "*"
