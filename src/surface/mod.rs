@@ -176,24 +176,24 @@ impl Surface {
 
   pub fn create_from_png(filename: &str) -> Surface {
     unsafe {
-      use std::c_str::ToCStr;
-      let foreign_result = cairo_image_surface_create_from_png(filename.to_c_str().as_ptr() as *mut i8);
+      use std::ffi::CString;
+      let foreign_result = cairo_image_surface_create_from_png(CString::from_slice(filename.as_bytes()).as_ptr() as *mut i8);
       return Surface { opaque: foreign_result as *mut libc::c_void };
     }
   }
 
   pub fn write_to_png(&mut self, filename: &str) -> super::Status {
     unsafe {
-      use std::c_str::ToCStr;
-      let foreign_result = cairo_surface_write_to_png(self.opaque, filename.to_c_str().as_ptr() as *mut i8);
+      use std::ffi::CString;
+      let foreign_result = cairo_surface_write_to_png(self.opaque, CString::from_slice(filename.as_bytes()).as_ptr() as *mut i8);
       return foreign_result;
     }
   }
 
   pub fn create_svg(&mut self, filename: &str, width: f64, height: f64) {
     unsafe {
-      use std::c_str::ToCStr;
-      cairo_svg_surface_create(self.opaque, filename.to_c_str().as_ptr() as *mut i8, width, height);
+      use std::ffi::CString;
+      cairo_svg_surface_create(self.opaque, CString::from_slice(filename.as_bytes()).as_ptr() as *mut i8, width, height);
     }
   }
 
@@ -206,7 +206,7 @@ impl Surface {
   pub fn svg_version_to_string(version: SVGVersion) -> std::string::String {
     unsafe {
       let foreign_result = cairo_svg_version_to_string(version);
-      return std::c_str::CString::new(foreign_result as *const i8, false).as_str().unwrap().to_string();
+      return std::string::String::from_utf8_lossy(std::ffi::CStr::from_ptr(foreign_result).to_bytes()).into_owned()
     }
   }
 }
