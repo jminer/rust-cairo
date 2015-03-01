@@ -1,6 +1,10 @@
 [package]
 name = "cairo"
 version = "0.0.3"
+description = "Cairo bindings"
+license = "CC0-1.0"
+homepage = "https://github.com/passcod/rust-cairo"
+repository = "https://github.com/passcod/rust-cairo.git"
 authors = [
   "Félix Saparelli <felix@passcod.name>",
   "Tal Levy <tal@fastmail.com>",
