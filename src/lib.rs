@@ -1,4 +1,7 @@
 #![allow(missing_copy_implementations)]
+#![feature(core)] 
+#![feature(libc)] 
+#![feature(std_misc)] 
 extern crate num;
 extern crate libc;
 #[link(name = "cairo")] extern {}
@@ -190,7 +193,7 @@ impl Cairo {
       use std::intrinsics;
       use std::iter::repeat;
       use num::traits::Zero;
-      let dashes_len = self.get_dash_count() as uint;
+      let dashes_len = self.get_dash_count() as usize;
       let mut dashes:Vec<f64> = repeat(Zero::zero()).take(dashes_len).collect();
       let mut offset:f64 = intrinsics::init();
       cairo_get_dash(self.opaque, dashes.as_mut_ptr(), &mut offset);
