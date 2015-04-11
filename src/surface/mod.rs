@@ -175,25 +175,29 @@ impl Surface {
   }
 
   pub fn create_from_png(filename: &str) -> Surface {
+    use std::ffi::CString;
+    let cstr_filename = CString::new(filename.as_bytes()).unwrap(); // TODO
+    // Fails if the filename has any internal null bytes.
     unsafe {
-      use std::ffi::CString;
-      let foreign_result = cairo_image_surface_create_from_png(CString::from_slice(filename.as_bytes()).as_ptr() as *mut i8);
+      let foreign_result = cairo_image_surface_create_from_png(cstr_filename.as_ptr());
       return Surface { opaque: foreign_result as *mut libc::c_void };
     }
   }
 
   pub fn write_to_png(&mut self, filename: &str) -> super::Status {
+    use std::ffi::CString;
+    let cstr_filename = CString::new(filename.as_bytes()).unwrap(); // TODO
     unsafe {
-      use std::ffi::CString;
-      let foreign_result = cairo_surface_write_to_png(self.opaque, CString::from_slice(filename.as_bytes()).as_ptr() as *mut i8);
+      let foreign_result = cairo_surface_write_to_png(self.opaque, cstr_filename.as_ptr());
       return foreign_result;
     }
   }
 
   pub fn create_svg(&mut self, filename: &str, width: f64, height: f64) {
+    use std::ffi::CString;
+    let cstr_filename = CString::new(filename.as_bytes()).unwrap(); // TODO
     unsafe {
-      use std::ffi::CString;
-      cairo_svg_surface_create(self.opaque, CString::from_slice(filename.as_bytes()).as_ptr() as *mut i8, width, height);
+      cairo_svg_surface_create(self.opaque, cstr_filename.as_ptr(), width, height);
     }
   }
 
@@ -235,11 +239,11 @@ extern {
   fn cairo_image_surface_get_width(self_arg: *mut libc::c_void) -> libc::c_int;
   fn cairo_image_surface_get_height(self_arg: *mut libc::c_void) -> libc::c_int;
   fn cairo_image_surface_get_stride(self_arg: *mut libc::c_void) -> libc::c_int;
-  fn cairo_image_surface_create_from_png(filename: *mut i8) -> *mut libc::c_void;
-  fn cairo_surface_write_to_png(self_arg: *mut libc::c_void, filename: *mut i8) -> super::Status;
-  fn cairo_svg_surface_create(self_arg: *mut libc::c_void, filename: *mut i8, width: f64, height: f64);
+  fn cairo_image_surface_create_from_png(filename: *const libc::c_char) -> *mut libc::c_void;
+  fn cairo_surface_write_to_png(self_arg: *mut libc::c_void, filename: *const libc::c_char) -> super::Status;
+  fn cairo_svg_surface_create(self_arg: *mut libc::c_void, filename: *const libc::c_char, width: f64, height: f64);
   fn cairo_svg_surface_restrict_to_version(self_arg: *mut libc::c_void, version: SVGVersion);
-  fn cairo_svg_version_to_string(version: SVGVersion) -> *mut i8;
+  fn cairo_svg_version_to_string(version: SVGVersion) -> *const libc::c_char;
 }
 
 impl std::clone::Clone for Surface {
