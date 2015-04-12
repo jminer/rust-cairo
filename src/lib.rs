@@ -1,7 +1,6 @@
 #![allow(missing_copy_implementations)]
-#![feature(core)] 
-#![feature(libc)] 
-#![feature(std_misc)] 
+#![feature(core)]
+#![feature(libc)]
 extern crate num;
 extern crate libc;
 #[link(name = "cairo")] extern {}
@@ -532,9 +531,10 @@ impl Cairo {
   }
 
   pub fn text_path(&mut self, text_path: &str) {
+    use std::ffi::CString;
+    let cstr_text_path = CString::new(text_path.as_bytes()).unwrap(); // TODO
     unsafe {
-      use std::ffi::CString;
-      cairo_text_path(self.opaque, CString::from_slice(text_path.as_bytes()).as_ptr() as *mut i8);
+      cairo_text_path(self.opaque, cstr_text_path.as_ptr());
     }
   }
 
@@ -650,9 +650,10 @@ impl Cairo {
   }
 
   pub fn select_font_face(&mut self, family: &str, slant: font::slant::Slant, weight: font::weight::Weight) {
+    use std::ffi::CString;
+    let cstr_family = CString::new(family.as_bytes()).unwrap();
     unsafe {
-      use std::ffi::CString;
-      cairo_select_font_face(self.opaque, CString::from_slice(family.as_bytes()).as_ptr() as *mut i8, slant, weight);
+      cairo_select_font_face(self.opaque, cstr_family.as_ptr(), slant, weight);
     }
   }
 
@@ -716,9 +717,10 @@ impl Cairo {
   }
 
   pub fn show_text(&mut self, utf8: &str) {
+    use std::ffi::CString;
+    let cstr_utf8 = CString::new(utf8.as_bytes()).unwrap(); // TODO
     unsafe {
-      use std::ffi::CString;
-      cairo_show_text(self.opaque, CString::from_slice(utf8.as_bytes()).as_ptr() as *mut i8);
+      cairo_show_text(self.opaque, cstr_utf8.as_ptr());
     }
   }
 
@@ -729,9 +731,10 @@ impl Cairo {
   }
 
   pub fn show_text_glyphs(&mut self, utf8: &str, glyphs: &mut [font::Glyph], clusters: &mut [font::Cluster], cluster_flags: font::cluster_flags::ClusterFlags) {
+    use std::ffi::CString;
+    let cstr_utf8 = CString::new(utf8.as_bytes()).unwrap(); // TODO
     unsafe {
-      use std::ffi::CString;
-      cairo_show_text_glyphs(self.opaque, CString::from_slice(utf8.as_bytes()).as_ptr() as *mut i8, -1, glyphs.as_mut_ptr(), glyphs.len() as libc::c_int, clusters.as_mut_ptr(), clusters.len() as libc::c_int, cluster_flags);
+      cairo_show_text_glyphs(self.opaque, cstr_utf8.as_ptr(), -1, glyphs.as_mut_ptr(), glyphs.len() as libc::c_int, clusters.as_mut_ptr(), clusters.len() as libc::c_int, cluster_flags);
     }
   }
 
@@ -745,11 +748,12 @@ impl Cairo {
   }
 
   pub fn text_extents(&mut self, utf8: &str) -> font::TextExtents {
+    use std::ffi::CString;
+    let cstr_utf8 = CString::new(utf8.as_bytes()).unwrap(); // TODO
     unsafe {
-      use std::ffi::CString;
       use std::intrinsics;
       let mut extents:font::TextExtents = intrinsics::init();
-      cairo_text_extents(self.opaque, CString::from_slice(utf8.as_bytes()).as_ptr() as *mut i8, &mut extents);
+      cairo_text_extents(self.opaque, cstr_utf8.as_ptr(), &mut extents);
       return extents;
     }
   }
@@ -834,7 +838,7 @@ extern {
   fn cairo_move_to(self_arg: *mut libc::c_void, x: f64, y: f64);
   fn cairo_rectangle(self_arg: *mut libc::c_void, x: f64, y: f64, width: f64, height: f64);
   fn cairo_glyph_path(self_arg: *mut libc::c_void, glyphs: *mut font::Glyph, glyphs: libc::c_int);
-  fn cairo_text_path(self_arg: *mut libc::c_void, text_path: *mut i8);
+  fn cairo_text_path(self_arg: *mut libc::c_void, text_path: *const libc::c_char);
   fn cairo_rel_curve_to(self_arg: *mut libc::c_void, dx1: f64, dy1: f64, dx2: f64, dy2: f64, dx3: f64, dy3: f64);
   fn cairo_rel_line_to(self_arg: *mut libc::c_void, dx: f64, dy: f64);
   fn cairo_rel_move_to(self_arg: *mut libc::c_void, dx: f64, dy: f64);
@@ -850,7 +854,7 @@ extern {
   fn cairo_user_to_device_distance(self_arg: *mut libc::c_void, dx: *mut f64, dy: *mut f64);
   fn cairo_device_to_user(self_arg: *mut libc::c_void, x: *mut f64, y: *mut f64);
   fn cairo_device_to_user_distance(self_arg: *mut libc::c_void, dx: *mut f64, dy: *mut f64);
-  fn cairo_select_font_face(self_arg: *mut libc::c_void, family: *mut i8, slant: font::slant::Slant, weight: font::weight::Weight);
+  fn cairo_select_font_face(self_arg: *mut libc::c_void, family: *const libc::c_char, slant: font::slant::Slant, weight: font::weight::Weight);
   fn cairo_set_font_size(self_arg: *mut libc::c_void, size: f64);
   fn cairo_set_font_matrix(self_arg: *mut libc::c_void, matrix: *mut matrix::Matrix);
   fn cairo_get_font_matrix(self_arg: *mut libc::c_void, matrix: *mut matrix::Matrix);
@@ -860,11 +864,11 @@ extern {
   fn cairo_get_font_face(self_arg: *mut libc::c_void) -> *mut libc::c_void;
   fn cairo_set_scaled_font(self_arg: *mut libc::c_void, scaled_font: *mut libc::c_void);
   fn cairo_get_scaled_font(self_arg: *mut libc::c_void) -> *mut libc::c_void;
-  fn cairo_show_text(self_arg: *mut libc::c_void, utf8: *mut i8);
+  fn cairo_show_text(self_arg: *mut libc::c_void, utf8: *const libc::c_char);
   fn cairo_show_glyphs(self_arg: *mut libc::c_void, glyphs: *mut font::Glyph, glyphs: libc::c_int);
-  fn cairo_show_text_glyphs(self_arg: *mut libc::c_void, utf8: *mut i8, utf8_len: libc::c_int, glyphs: *mut font::Glyph, glyphs: libc::c_int, clusters: *mut font::Cluster, clusters: libc::c_int, cluster_flags: font::cluster_flags::ClusterFlags);
+  fn cairo_show_text_glyphs(self_arg: *mut libc::c_void, utf8: *const libc::c_char, utf8_len: libc::c_int, glyphs: *mut font::Glyph, glyphs: libc::c_int, clusters: *mut font::Cluster, clusters: libc::c_int, cluster_flags: font::cluster_flags::ClusterFlags);
   fn cairo_font_extents(self_arg: *mut libc::c_void, extents: *mut font::FontExtents);
-  fn cairo_text_extents(self_arg: *mut libc::c_void, utf8: *mut i8, extents: *mut font::TextExtents);
+  fn cairo_text_extents(self_arg: *mut libc::c_void, utf8: *const libc::c_char, extents: *mut font::TextExtents);
   fn cairo_glyph_extents(self_arg: *mut libc::c_void, glyphs: *mut font::Glyph, glyphs: libc::c_int, extents: *mut font::TextExtents);
 }
 

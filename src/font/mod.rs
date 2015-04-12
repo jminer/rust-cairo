@@ -149,9 +149,11 @@ pub struct FontFace {
 
 impl FontFace {
   pub fn create_toy(family: &str, slant: slant::Slant, weight: weight::Weight) -> FontFace {
+    use std::ffi::CString;
+    // CString::new will return an error if the bytes yielded contain an internal 0 byte.
+    let cstr_family = CString::new(family.as_bytes()).unwrap(); // TODO!
     unsafe {
-      use std::ffi::CString;
-      let foreign_result = cairo_toy_font_face_create(CString::from_slice(family.as_bytes()).as_ptr() as *mut i8, slant, weight);
+      let foreign_result = cairo_toy_font_face_create(cstr_family.as_ptr(), slant, weight);
       return FontFace { opaque: foreign_result as *mut libc::c_void };
     }
   }
@@ -200,8 +202,8 @@ impl FontFace {
 }
 
 extern {
-  fn cairo_toy_font_face_create(family: *mut i8, slant: slant::Slant, weight: weight::Weight) -> *mut libc::c_void;
-  fn cairo_toy_font_face_get_family(self_arg: *mut libc::c_void) -> *mut i8;
+  fn cairo_toy_font_face_create(family: *const libc::c_char, slant: slant::Slant, weight: weight::Weight) -> *mut libc::c_void;
+  fn cairo_toy_font_face_get_family(self_arg: *mut libc::c_void) -> *const libc::c_char;
   fn cairo_toy_font_face_get_slant(self_arg: *mut libc::c_void) -> slant::Slant;
   fn cairo_toy_font_face_get_weight(self_arg: *mut libc::c_void) -> slant::Slant;
   fn cairo_font_face_status(self_arg: *mut libc::c_void) -> super::Status;
@@ -263,10 +265,12 @@ impl ScaledFont {
   }
 
   pub fn text_extents(&mut self, utf8: &str) -> TextExtents {
+    use std::ffi::CString;
+    let cstr_utf8 = CString::new(utf8.as_bytes()).unwrap(); // TODO!
+    // CString::new will return an error if the bytes yielded contain an internal 0 byte.
     unsafe {
-      use std::ffi::CString;
       let mut extents:TextExtents = std::intrinsics::init();
-      cairo_scaled_font_text_extents(self.opaque, CString::from_slice(utf8.as_bytes()).as_ptr() as *mut i8, &mut extents);
+      cairo_scaled_font_text_extents(self.opaque, cstr_utf8.as_ptr(), &mut extents);
       return extents;
     }
   }
@@ -335,7 +339,7 @@ extern {
   fn cairo_scaled_font_create(font_face: *mut libc::c_void, font_matrix: *mut super::matrix::Matrix, ctm: *mut super::matrix::Matrix, options: *mut libc::c_void) -> *mut libc::c_void;
   fn cairo_scaled_font_status(self_arg: *mut libc::c_void) -> super::Status;
   fn cairo_scaled_font_extents(self_arg: *mut libc::c_void, extents: *mut FontExtents);
-  fn cairo_scaled_font_text_extents(self_arg: *mut libc::c_void, utf8: *mut i8, extents: *mut TextExtents);
+  fn cairo_scaled_font_text_extents(self_arg: *mut libc::c_void, utf8: *const libc::c_char, extents: *mut TextExtents);
   fn cairo_scaled_font_glyph_extents(self_arg: *mut libc::c_void, glyphs: *mut Glyph, glyphs: libc::c_int, extents: *mut TextExtents);
   fn cairo_scaled_font_get_font_face(self_arg: *mut libc::c_void) -> *mut libc::c_void;
   fn cairo_scaled_font_get_font_options(self_arg: *mut libc::c_void, options: *mut FontExtents);
