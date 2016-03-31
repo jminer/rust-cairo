@@ -1,6 +1,3 @@
-#![allow(missing_copy_implementations)]
-#![feature(core)]
-#![feature(libc)]
 extern crate num;
 extern crate libc;
 #[link(name = "cairo")] extern {}
