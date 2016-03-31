@@ -13,7 +13,6 @@ pub enum SVGVersion {
   SVGVersion_1_2 = 1
 }
 
-#[repr(C)]
 pub struct Surface {
   pub opaque: *mut libc::c_void
 }

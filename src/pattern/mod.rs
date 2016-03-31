@@ -77,9 +77,9 @@ impl Pattern {
 
   pub fn get_surface(&mut self) -> (super::Status, super::surface::Surface) {
     unsafe {
-      let mut surface:super::surface::Surface = mem::zeroed();
+      let mut surface: *mut libc::c_void = mem::zeroed();
       let foreign_result = cairo_pattern_get_surface(self.opaque, &mut surface);
-      return (foreign_result, surface);
+      return (foreign_result, super::surface::Surface { opaque: surface });
     }
   }
 
@@ -282,7 +282,7 @@ extern {
   fn cairo_pattern_create_rgba(red: f64, green: f64, blue: f64, alpha: f64) -> *mut libc::c_void;
   fn cairo_pattern_get_rgba(self_arg: *mut libc::c_void, red: *mut f64, green: *mut f64, blue: *mut f64, alpha: *mut f64) -> super::Status;
   fn cairo_pattern_create_for_surface(surface: *mut libc::c_void) -> *mut libc::c_void;
-  fn cairo_pattern_get_surface(self_arg: *mut libc::c_void, surface: *mut super::surface::Surface) -> super::Status;
+  fn cairo_pattern_get_surface(self_arg: *mut libc::c_void, surface: *mut *mut libc::c_void) -> super::Status;
   fn cairo_pattern_create_linear(x0: f64, y0: f64, x1: f64, y1: f64) -> *mut libc::c_void;
   fn cairo_pattern_get_linear_points(self_arg: *mut libc::c_void, x0: *mut f64, y0: *mut f64, x1: *mut f64, y1: *mut f64) -> super::Status;
   fn cairo_pattern_create_radial(cx0: f64, cy0: f64, radius0: f64, cx1: f64, cy1: f64, radius1: f64) -> *mut libc::c_void;
