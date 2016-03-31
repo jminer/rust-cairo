@@ -258,7 +258,7 @@ impl ScaledFont {
 
   pub fn extents(&mut self) -> FontExtents {
     unsafe {
-      let mut extents:FontExtents = std::intrinsics::init();
+      let mut extents:FontExtents = std::mem::zeroed();
       cairo_scaled_font_extents(self.opaque, &mut extents);
       return extents;
     }
@@ -269,7 +269,7 @@ impl ScaledFont {
     let cstr_utf8 = CString::new(utf8.as_bytes()).unwrap(); // TODO!
     // CString::new will return an error if the bytes yielded contain an internal 0 byte.
     unsafe {
-      let mut extents:TextExtents = std::intrinsics::init();
+      let mut extents:TextExtents = std::mem::zeroed();
       cairo_scaled_font_text_extents(self.opaque, cstr_utf8.as_ptr(), &mut extents);
       return extents;
     }
@@ -277,7 +277,7 @@ impl ScaledFont {
 
   pub fn glyph_extents(&mut self, glyphs: &[Glyph]) -> TextExtents {
     unsafe {
-      let mut extents:TextExtents = std::intrinsics::init();
+      let mut extents:TextExtents = std::mem::zeroed();
       cairo_scaled_font_glyph_extents(self.opaque, glyphs.as_ptr() as *mut Glyph, glyphs.len() as libc::c_int, &mut extents);
       return extents;
     }
@@ -298,7 +298,7 @@ impl ScaledFont {
 
   pub fn get_font_matrix(&mut self) -> super::matrix::Matrix {
     unsafe {
-      let mut font_matrix:super::matrix::Matrix = std::intrinsics::init();
+      let mut font_matrix:super::matrix::Matrix = std::mem::zeroed();
       cairo_scaled_font_get_font_matrix(self.opaque, &mut font_matrix);
       return font_matrix;
     }
@@ -306,7 +306,7 @@ impl ScaledFont {
 
   pub fn get_ctm(&mut self) -> super::matrix::Matrix {
     unsafe {
-      let mut ctm:super::matrix::Matrix = std::intrinsics::init();
+      let mut ctm:super::matrix::Matrix = std::mem::zeroed();
       cairo_scaled_font_get_ctm(self.opaque, &mut ctm);
       return ctm;
     }
@@ -314,7 +314,7 @@ impl ScaledFont {
 
   pub fn get_scale_matrix(&mut self) -> super::matrix::Matrix {
     unsafe {
-      let mut scale_matrix:super::matrix::Matrix = std::intrinsics::init();
+      let mut scale_matrix:super::matrix::Matrix = std::mem::zeroed();
       cairo_scaled_font_get_scale_matrix(self.opaque, &mut scale_matrix);
       return scale_matrix;
     }

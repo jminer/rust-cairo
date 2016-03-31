@@ -5,6 +5,8 @@ extern crate num;
 extern crate libc;
 #[link(name = "cairo")] extern {}
 
+use std::mem;
+
 pub mod antialias;
 pub mod device;
 pub mod fill_rule;
@@ -189,12 +191,11 @@ impl Cairo {
 
   pub fn get_dash(&mut self) -> (Vec<f64>, f64) {
     unsafe {
-      use std::intrinsics;
       use std::iter::repeat;
       use num::traits::Zero;
       let dashes_len = self.get_dash_count() as usize;
       let mut dashes:Vec<f64> = repeat(Zero::zero()).take(dashes_len).collect();
-      let mut offset:f64 = intrinsics::init();
+      let mut offset:f64 = mem::zeroed();
       cairo_get_dash(self.opaque, dashes.as_mut_ptr(), &mut offset);
       return (dashes, offset);
     }
@@ -305,11 +306,10 @@ impl Cairo {
 
   pub fn clip_extents(&mut self) -> (f64, f64, f64, f64) {
     unsafe {
-      use std::intrinsics;
-      let mut x1:f64 = intrinsics::init();
-      let mut y1:f64 = intrinsics::init();
-      let mut x2:f64 = intrinsics::init();
-      let mut y2:f64 = intrinsics::init();
+      let mut x1:f64 = mem::zeroed();
+      let mut y1:f64 = mem::zeroed();
+      let mut x2:f64 = mem::zeroed();
+      let mut y2:f64 = mem::zeroed();
       cairo_clip_extents(self.opaque, &mut x1, &mut y1, &mut x2, &mut y2);
       return (x1, y1, x2, y2);
     }
@@ -342,11 +342,10 @@ impl Cairo {
 
   pub fn fill_extents(&mut self) -> (f64, f64, f64, f64) {
     unsafe {
-      use std::intrinsics;
-      let mut x1:f64 = intrinsics::init();
-      let mut y1:f64 = intrinsics::init();
-      let mut x2:f64 = intrinsics::init();
-      let mut y2:f64 = intrinsics::init();
+      let mut x1:f64 = mem::zeroed();
+      let mut y1:f64 = mem::zeroed();
+      let mut x2:f64 = mem::zeroed();
+      let mut y2:f64 = mem::zeroed();
       cairo_fill_extents(self.opaque, &mut x1, &mut y1, &mut x2, &mut y2);
       return (x1, y1, x2, y2);
     }
@@ -397,11 +396,10 @@ impl Cairo {
 
   pub fn stroke_extents(&mut self) -> (f64, f64, f64, f64) {
     unsafe {
-      use std::intrinsics;
-      let mut x1:f64 = intrinsics::init();
-      let mut y1:f64 = intrinsics::init();
-      let mut x2:f64 = intrinsics::init();
-      let mut y2:f64 = intrinsics::init();
+      let mut x1:f64 = mem::zeroed();
+      let mut y1:f64 = mem::zeroed();
+      let mut x2:f64 = mem::zeroed();
+      let mut y2:f64 = mem::zeroed();
       cairo_stroke_extents(self.opaque, &mut x1, &mut y1, &mut x2, &mut y2);
       return (x1, y1, x2, y2);
     }
@@ -462,9 +460,8 @@ impl Cairo {
 
   pub fn get_current_point(&mut self) -> (f64, f64) {
     unsafe {
-      use std::intrinsics;
-      let mut x:f64 = intrinsics::init();
-      let mut y:f64 = intrinsics::init();
+      let mut x:f64 = mem::zeroed();
+      let mut y:f64 = mem::zeroed();
       cairo_get_current_point(self.opaque, &mut x, &mut y);
       return (x, y);
     }
@@ -558,11 +555,10 @@ impl Cairo {
 
   pub fn path_extents(&mut self) -> (f64, f64, f64, f64) {
     unsafe {
-      use std::intrinsics;
-      let mut x1:f64 = intrinsics::init();
-      let mut y1:f64 = intrinsics::init();
-      let mut x2:f64 = intrinsics::init();
-      let mut y2:f64 = intrinsics::init();
+      let mut x1:f64 = mem::zeroed();
+      let mut y1:f64 = mem::zeroed();
+      let mut x2:f64 = mem::zeroed();
+      let mut y2:f64 = mem::zeroed();
       cairo_path_extents(self.opaque, &mut x1, &mut y1, &mut x2, &mut y2);
       return (x1, y1, x2, y2);
     }
@@ -600,8 +596,7 @@ impl Cairo {
 
   pub fn get_matrix(&mut self) -> matrix::Matrix {
     unsafe {
-      use std::intrinsics;
-      let mut matrix:matrix::Matrix = intrinsics::init();
+      let mut matrix:matrix::Matrix = mem::zeroed();
       cairo_get_matrix(self.opaque, &mut matrix);
       return matrix;
     }
@@ -671,8 +666,7 @@ impl Cairo {
 
   pub fn get_font_matrix(&mut self) -> matrix::Matrix {
     unsafe {
-      use std::intrinsics;
-      let mut matrix:matrix::Matrix = intrinsics::init();
+      let mut matrix:matrix::Matrix = mem::zeroed();
       cairo_get_font_matrix(self.opaque, &mut matrix);
       return matrix;
     }
@@ -740,8 +734,7 @@ impl Cairo {
 
   pub fn font_extents(&mut self) -> font::FontExtents {
     unsafe {
-      use std::intrinsics;
-      let mut extents:font::FontExtents = intrinsics::init();
+      let mut extents:font::FontExtents = mem::zeroed();
       cairo_font_extents(self.opaque, &mut extents);
       return extents;
     }
@@ -751,8 +744,7 @@ impl Cairo {
     use std::ffi::CString;
     let cstr_utf8 = CString::new(utf8.as_bytes()).unwrap(); // TODO
     unsafe {
-      use std::intrinsics;
-      let mut extents:font::TextExtents = intrinsics::init();
+      let mut extents:font::TextExtents = mem::zeroed();
       cairo_text_extents(self.opaque, cstr_utf8.as_ptr(), &mut extents);
       return extents;
     }
@@ -760,8 +752,7 @@ impl Cairo {
 
   pub fn glyph_extents(&mut self, glyphs: &[font::Glyph]) -> font::TextExtents {
     unsafe {
-      use std::intrinsics;
-      let mut extents:font::TextExtents = intrinsics::init();
+      let mut extents:font::TextExtents = mem::zeroed();
       cairo_glyph_extents(self.opaque, glyphs.as_ptr() as *mut font::Glyph, glyphs.len() as libc::c_int, &mut extents);
       return extents;
     }

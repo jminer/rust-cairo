@@ -1,5 +1,6 @@
 use libc;
 use std;
+use std::mem;
 
 pub mod overlap;
 
@@ -38,7 +39,7 @@ impl Region {
 
   pub fn get_extents(&mut self) -> Rectangle {
     unsafe {
-      let mut extents:Rectangle = std::intrinsics::init();
+      let mut extents:Rectangle = mem::zeroed();
       cairo_region_get_extents(self.opaque, &mut extents);
       return extents;
     }
@@ -53,7 +54,7 @@ impl Region {
 
   pub fn get_rectangle(&mut self, nth: libc::c_int) -> Rectangle {
     unsafe {
-      let mut rectangle:Rectangle = std::intrinsics::init();
+      let mut rectangle:Rectangle = mem::zeroed();
       cairo_region_get_rectangle(self.opaque, nth, &mut rectangle);
       return rectangle;
     }
