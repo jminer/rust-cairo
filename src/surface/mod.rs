@@ -1,5 +1,6 @@
 use libc;
 use std;
+use std::mem;
 
 pub mod content;
 pub mod surface_type;
@@ -12,7 +13,6 @@ pub enum SVGVersion {
   SVGVersion_1_2 = 1
 }
 
-#[repr(C)]
 pub struct Surface {
   pub opaque: *mut libc::c_void
 }
@@ -91,8 +91,8 @@ impl Surface {
 
   pub fn get_device_offset(&mut self) -> (f64, f64) {
     unsafe {
-      let mut x_offset:f64 = std::intrinsics::init();
-      let mut y_offset:f64 = std::intrinsics::init();
+      let mut x_offset:f64 = mem::zeroed();
+      let mut y_offset:f64 = mem::zeroed();
       cairo_surface_get_device_offset(self.opaque, &mut x_offset, &mut y_offset);
       return (x_offset, y_offset);
     }
@@ -106,8 +106,8 @@ impl Surface {
 
   pub fn get_fallback_resolution(&mut self) -> (f64, f64) {
     unsafe {
-      let mut x_pixels_per_inch:f64 = std::intrinsics::init();
-      let mut y_pixels_per_inch:f64 = std::intrinsics::init();
+      let mut x_pixels_per_inch:f64 = mem::zeroed();
+      let mut y_pixels_per_inch:f64 = mem::zeroed();
       cairo_surface_get_fallback_resolution(self.opaque, &mut x_pixels_per_inch, &mut y_pixels_per_inch);
       return (x_pixels_per_inch, y_pixels_per_inch);
     }

@@ -1,5 +1,6 @@
 use libc;
 use std;
+use std::mem;
 
 pub mod extend;
 pub mod filter;
@@ -24,7 +25,7 @@ impl Pattern {
 
   pub fn get_color_stop_count(&mut self) -> (super::Status, libc::c_int) {
     unsafe {
-      let mut stop_count:libc::c_int = std::intrinsics::init();
+      let mut stop_count:libc::c_int = mem::zeroed();
       let foreign_result = cairo_pattern_get_color_stop_count(self.opaque, &mut stop_count);
       return (foreign_result, stop_count);
     }
@@ -32,11 +33,11 @@ impl Pattern {
 
   pub fn get_color_stop_rgba(&mut self, stop_count: libc::c_int) -> (super::Status, f64, f64, f64, f64, f64) {
     unsafe {
-      let mut offset:f64 = std::intrinsics::init();
-      let mut red:f64 = std::intrinsics::init();
-      let mut green:f64 = std::intrinsics::init();
-      let mut blue:f64 = std::intrinsics::init();
-      let mut alpha:f64 = std::intrinsics::init();
+      let mut offset:f64 = mem::zeroed();
+      let mut red:f64 = mem::zeroed();
+      let mut green:f64 = mem::zeroed();
+      let mut blue:f64 = mem::zeroed();
+      let mut alpha:f64 = mem::zeroed();
       let foreign_result = cairo_pattern_get_color_stop_rgba(self.opaque, stop_count, &mut offset, &mut red, &mut green, &mut blue, &mut alpha);
       return (foreign_result, offset, red, green, blue, alpha);
     }
@@ -58,10 +59,10 @@ impl Pattern {
 
   pub fn get_rgba(&mut self) -> (super::Status, f64, f64, f64, f64) {
     unsafe {
-      let mut red:f64 = std::intrinsics::init();
-      let mut green:f64 = std::intrinsics::init();
-      let mut blue:f64 = std::intrinsics::init();
-      let mut alpha:f64 = std::intrinsics::init();
+      let mut red:f64 = mem::zeroed();
+      let mut green:f64 = mem::zeroed();
+      let mut blue:f64 = mem::zeroed();
+      let mut alpha:f64 = mem::zeroed();
       let foreign_result = cairo_pattern_get_rgba(self.opaque, &mut red, &mut green, &mut blue, &mut alpha);
       return (foreign_result, red, green, blue, alpha);
     }
@@ -76,9 +77,9 @@ impl Pattern {
 
   pub fn get_surface(&mut self) -> (super::Status, super::surface::Surface) {
     unsafe {
-      let mut surface:super::surface::Surface = std::intrinsics::init();
+      let mut surface: *mut libc::c_void = mem::zeroed();
       let foreign_result = cairo_pattern_get_surface(self.opaque, &mut surface);
-      return (foreign_result, surface);
+      return (foreign_result, super::surface::Surface { opaque: surface });
     }
   }
 
@@ -91,10 +92,10 @@ impl Pattern {
 
   pub fn get_linear_points(&mut self) -> (super::Status, f64, f64, f64, f64) {
     unsafe {
-      let mut x0:f64 = std::intrinsics::init();
-      let mut y0:f64 = std::intrinsics::init();
-      let mut x1:f64 = std::intrinsics::init();
-      let mut y1:f64 = std::intrinsics::init();
+      let mut x0:f64 = mem::zeroed();
+      let mut y0:f64 = mem::zeroed();
+      let mut x1:f64 = mem::zeroed();
+      let mut y1:f64 = mem::zeroed();
       let foreign_result = cairo_pattern_get_linear_points(self.opaque, &mut x0, &mut y0, &mut x1, &mut y1);
       return (foreign_result, x0, y0, x1, y1);
     }
@@ -109,12 +110,12 @@ impl Pattern {
 
   pub fn get_radial_circles(&mut self) -> (super::Status, f64, f64, f64, f64, f64, f64) {
     unsafe {
-      let mut x0:f64 = std::intrinsics::init();
-      let mut y0:f64 = std::intrinsics::init();
-      let mut r0:f64 = std::intrinsics::init();
-      let mut x1:f64 = std::intrinsics::init();
-      let mut y1:f64 = std::intrinsics::init();
-      let mut r1:f64 = std::intrinsics::init();
+      let mut x0:f64 = mem::zeroed();
+      let mut y0:f64 = mem::zeroed();
+      let mut r0:f64 = mem::zeroed();
+      let mut x1:f64 = mem::zeroed();
+      let mut y1:f64 = mem::zeroed();
+      let mut r1:f64 = mem::zeroed();
       let foreign_result = cairo_pattern_get_radial_circles(self.opaque, &mut x0, &mut y0, &mut r0, &mut x1, &mut y1, &mut r1);
       return (foreign_result, x0, y0, r0, x1, y1, r1);
     }
@@ -177,7 +178,7 @@ impl Pattern {
 
   pub fn get_patch_count(&mut self) -> (super::Status, libc::c_uint) {
     unsafe {
-      let mut count:libc::c_uint = std::intrinsics::init();
+      let mut count:libc::c_uint = mem::zeroed();
       let foreign_result = cairo_mesh_pattern_get_patch_count(self.opaque, &mut count);
       return (foreign_result, count);
     }
@@ -192,8 +193,8 @@ impl Pattern {
 
   pub fn get_control_point(&mut self, patch_num: libc::c_uint, pointer_num: libc::c_uint) -> (super::Status, f64, f64) {
     unsafe {
-      let mut x:f64 = std::intrinsics::init();
-      let mut y:f64 = std::intrinsics::init();
+      let mut x:f64 = mem::zeroed();
+      let mut y:f64 = mem::zeroed();
       let foreign_result = cairo_mesh_pattern_get_control_point(self.opaque, patch_num, pointer_num, &mut x, &mut y);
       return (foreign_result, x, y);
     }
@@ -201,10 +202,10 @@ impl Pattern {
 
   pub fn get_corner_color_rgba(&mut self, patch_num: libc::c_uint, pointer_num: libc::c_uint) -> (super::Status, f64, f64, f64, f64) {
     unsafe {
-      let mut red:f64 = std::intrinsics::init();
-      let mut green:f64 = std::intrinsics::init();
-      let mut blue:f64 = std::intrinsics::init();
-      let mut alpha:f64 = std::intrinsics::init();
+      let mut red:f64 = mem::zeroed();
+      let mut green:f64 = mem::zeroed();
+      let mut blue:f64 = mem::zeroed();
+      let mut alpha:f64 = mem::zeroed();
       let foreign_result = cairo_mesh_pattern_get_corner_color_rgba(self.opaque, patch_num, pointer_num, &mut red, &mut green, &mut blue, &mut alpha);
       return (foreign_result, red, green, blue, alpha);
     }
@@ -251,7 +252,7 @@ impl Pattern {
 
   pub fn get_matrix(&mut self) -> super::matrix::Matrix {
     unsafe {
-      let mut matrix:super::matrix::Matrix = std::intrinsics::init();
+      let mut matrix:super::matrix::Matrix = mem::zeroed();
       cairo_pattern_get_matrix(self.opaque, &mut matrix);
       return matrix;
     }
@@ -281,7 +282,7 @@ extern {
   fn cairo_pattern_create_rgba(red: f64, green: f64, blue: f64, alpha: f64) -> *mut libc::c_void;
   fn cairo_pattern_get_rgba(self_arg: *mut libc::c_void, red: *mut f64, green: *mut f64, blue: *mut f64, alpha: *mut f64) -> super::Status;
   fn cairo_pattern_create_for_surface(surface: *mut libc::c_void) -> *mut libc::c_void;
-  fn cairo_pattern_get_surface(self_arg: *mut libc::c_void, surface: *mut super::surface::Surface) -> super::Status;
+  fn cairo_pattern_get_surface(self_arg: *mut libc::c_void, surface: *mut *mut libc::c_void) -> super::Status;
   fn cairo_pattern_create_linear(x0: f64, y0: f64, x1: f64, y1: f64) -> *mut libc::c_void;
   fn cairo_pattern_get_linear_points(self_arg: *mut libc::c_void, x0: *mut f64, y0: *mut f64, x1: *mut f64, y1: *mut f64) -> super::Status;
   fn cairo_pattern_create_radial(cx0: f64, cy0: f64, radius0: f64, cx1: f64, cy1: f64, radius1: f64) -> *mut libc::c_void;

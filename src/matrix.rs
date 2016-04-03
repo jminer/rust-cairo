@@ -1,4 +1,4 @@
-use std;
+use std::mem;
 
 #[repr(C)]
 pub struct Matrix {
@@ -13,7 +13,7 @@ pub struct Matrix {
 impl Matrix {
   pub fn new(xx: f64, yx: f64, xy: f64, yy: f64, x0: f64, y0: f64) -> Matrix {
     unsafe {
-      let mut this:Matrix = std::intrinsics::init();
+      let mut this:Matrix = mem::zeroed();
       cairo_matrix_init(&mut this, xx, yx, xy, yy, x0, y0);
       return this;
     }
@@ -21,7 +21,7 @@ impl Matrix {
 
   pub fn identity() -> Matrix {
     unsafe {
-      let mut this:Matrix = std::intrinsics::init();
+      let mut this:Matrix = mem::zeroed();
       cairo_matrix_init_identity(&mut this);
       return this;
     }
@@ -29,7 +29,7 @@ impl Matrix {
 
   pub fn for_translation(x0: f64, y0: f64) -> Matrix {
     unsafe {
-      let mut this:Matrix = std::intrinsics::init();
+      let mut this:Matrix = mem::zeroed();
       cairo_matrix_init_translate(&mut this, x0, y0);
       return this;
     }
@@ -37,7 +37,7 @@ impl Matrix {
 
   pub fn for_scale(sx: f64, sy: f64) -> Matrix {
     unsafe {
-      let mut this:Matrix = std::intrinsics::init();
+      let mut this:Matrix = mem::zeroed();
       cairo_matrix_init_scale(&mut this, sx, sy);
       return this;
     }
@@ -45,7 +45,7 @@ impl Matrix {
 
   pub fn for_rotation(radians: f64) -> Matrix {
     unsafe {
-      let mut this:Matrix = std::intrinsics::init();
+      let mut this:Matrix = mem::zeroed();
       cairo_matrix_init_rotate(&mut this, radians);
       return this;
     }
@@ -53,7 +53,7 @@ impl Matrix {
 
   pub fn multiply(a: &mut Matrix, b: &mut Matrix) -> Matrix {
     unsafe {
-      let mut this:Matrix = std::intrinsics::init();
+      let mut this:Matrix = mem::zeroed();
       cairo_matrix_multiply(&mut this, a, b);
       return this;
     }
@@ -79,8 +79,8 @@ impl Matrix {
 
   pub fn transform_distance(&mut self) -> (f64, f64) {
     unsafe {
-      let mut dx:f64 = std::intrinsics::init();
-      let mut dy:f64 = std::intrinsics::init();
+      let mut dx:f64 = mem::zeroed();
+      let mut dy:f64 = mem::zeroed();
       cairo_matrix_transform_distance(self, &mut dx, &mut dy);
       return (dx, dy);
     }
@@ -88,8 +88,8 @@ impl Matrix {
 
   pub fn transform_point(&mut self) -> (f64, f64) {
     unsafe {
-      let mut x:f64 = std::intrinsics::init();
-      let mut y:f64 = std::intrinsics::init();
+      let mut x:f64 = mem::zeroed();
+      let mut y:f64 = mem::zeroed();
       cairo_matrix_transform_point(self, &mut x, &mut y);
       return (x, y);
     }

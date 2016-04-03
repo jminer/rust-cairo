@@ -12,4 +12,5 @@ authors = [
 ]
 
 [dependencies]
-num = "*"
+num = "0.1.31"
+libc = "0.2.9"
