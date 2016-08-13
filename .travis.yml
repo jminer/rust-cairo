@@ -1,8 +1,12 @@
 language: rust
+after_success: |
+  [ $TRAVIS_BRANCH = master ] &&
+  [ $TRAVIS_PULL_REQUEST = false ] &&
+  cargo doc &&
+  echo "<meta http-equiv=refresh content=0;url=cairo/index.html>" > target/doc/index.html &&
+  sudo pip install ghp-import &&
+  ghp-import -n target/doc &&
+  git push -fq https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
 env:
   global:
-    - secure: BnHLAfu+09Yz225IgBcL97R6qX8HtU4m96T6hBJYu/C4O7ZNHgcUIUBRWLZ6owDQwqCVvWuLtI3xY84jX4drDSnOjnl9zchHqV7LBAV+nLpE4qTp4QPLMTcc6IiM47LR9FztIFzqQGs99mej+GTi1/Z4Sof7cTcut4iTfQOp090=
-after_script:
-  - cargo doc
-  - mv target/doc doc
-  - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
+    secure: bftlV8eNLPs1DBTWD+wi8DsjoV0IheEOjM71728GRR4NOVlKPqsrqo6Vzu6V/3OqYAmc2Deo0GonaGd+IoNnNhPl3vIKOzAmWZva418Ct4shiqw4cg7Zj5mbyonjNJ+ELBekr3Ia/7FOKTXgC53jHfXNeuqfSqYAeIz2prTSmtj8UMLhLy1O2MveuYLVuziYAFGFDXIlrs1rrdfyNcX4PxYlKXHeH3NArxbnJeCtmeTFyJFCoPduutPeZYajlvq+uvAJ7RCWjD9xbhUMxhaMa/aPhpvNZmxwxMEMfFu51yT2XJMQNBC147AAVJWTzzisPnJSIdin9lYbmoFtOE4Mwxfz32IYq8RZgH9vYCCiH/PUHAIGwsp/InCzbRZxrFjsAv359Cjl/Qf0ZXK3ibqpunOQgpRJvyDNa6RwUgM8NjZxKYCdForVwobL7bYQk5okj19lRUe8oT9kGIfyk58XYacaNzAe6MS018JQF1poGCnRHzKWupVzTuhFtmNIjuklguKsPnMnm4qDxSHilrevEVV+mYAiCIp4ZYDgu6e66ABCCNhhs8p3lnkQJbyQBeuy6T5UToY5uVdSiKbDRrgy6sTB8PsoPOznBbfmQKj+zrO7OL0OV9xg9K+AM7leAW7ZO9sOUQ1njIcrBBrdP4yiPLtnHxJ5a64038niM2e+wcU=
