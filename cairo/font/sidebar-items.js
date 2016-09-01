@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["cluster_flags",""],["font_type",""],["hint_metrics",""],["hint_style",""],["slant",""],["subpixel_order",""],["weight",""]],"struct":[["Cluster",""],["FontExtents",""],["FontFace",""],["Glyph",""],["Options",""],["ScaledFont",""],["TextExtents",""]]});

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Cairo` struct in crate `cairo`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Cairo">
+
+    <title>cairo::Cairo - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>cairo</a></p><script>window.sidebarCurrent = {name: 'Cairo', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>cairo</a>::<wbr><a class='struct' href=''>Cairo</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-1523' class='srclink' href='../src/cairo/src/lib.rs.html#62-64' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Cairo {
+    pub opaque: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../libc/enum.c_void.html' title='libc::c_void'>c_void</a>,
+}</pre><h2 class='fields'>Fields</h2><span id='structfield.opaque' class='structfield'><code>opaque: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.pointer.html'>*mut </a><a class='enum' href='../libc/enum.c_void.html' title='libc::c_void'>c_void</a></code>
+                           </span><span class='stab '></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../cairo/struct.Cairo.html' title='cairo::Cairo'>Cairo</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-1525' class='srclink' href='../src/cairo/src/lib.rs.html#66-757' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.create' class='method'><code>fn <a href='#method.create' class='fnname'>create</a>(surface: &amp;mut <a class='struct' href='../cairo/surface/struct.Surface.html' title='cairo::surface::Surface'>Surface</a>) -&gt; <a class='struct' href='../cairo/struct.Cairo.html' title='cairo::Cairo'>Cairo</a></code></h4>
+<h4 id='method.status' class='method'><code>fn <a href='#method.status' class='fnname'>status</a>(&amp;mut self) -&gt; <a class='enum' href='../cairo/enum.Status.html' title='cairo::Status'>Status</a></code></h4>
+<h4 id='method.save' class='method'><code>fn <a href='#method.save' class='fnname'>save</a>(&amp;mut self)</code></h4>
+<h4 id='method.restore' class='method'><code>fn <a href='#method.restore' class='fnname'>restore</a>(&amp;mut self)</code></h4>
+<h4 id='method.get_target' class='method'><code>fn <a href='#method.get_target' class='fnname'>get_target</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/surface/struct.Surface.html' title='cairo::surface::Surface'>Surface</a></code></h4>
+<h4 id='method.push_group' class='method'><code>fn <a href='#method.push_group' class='fnname'>push_group</a>(&amp;mut self)</code></h4>
+<h4 id='method.push_group_with_content' class='method'><code>fn <a href='#method.push_group_with_content' class='fnname'>push_group_with_content</a>(&amp;mut self, content: <a class='enum' href='../cairo/surface/content/enum.Content.html' title='cairo::surface::content::Content'>Content</a>)</code></h4>
+<h4 id='method.pop_group' class='method'><code>fn <a href='#method.pop_group' class='fnname'>pop_group</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/pattern/struct.Pattern.html' title='cairo::pattern::Pattern'>Pattern</a></code></h4>
+<h4 id='method.pop_group_to_source' class='method'><code>fn <a href='#method.pop_group_to_source' class='fnname'>pop_group_to_source</a>(&amp;mut self)</code></h4>
+<h4 id='method.get_group_target' class='method'><code>fn <a href='#method.get_group_target' class='fnname'>get_group_target</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/surface/struct.Surface.html' title='cairo::surface::Surface'>Surface</a></code></h4>
+<h4 id='method.set_source_rgb' class='method'><code>fn <a href='#method.set_source_rgb' class='fnname'>set_source_rgb</a>(&amp;mut self, red: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, green: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, blue: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.set_source_rgba' class='method'><code>fn <a href='#method.set_source_rgba' class='fnname'>set_source_rgba</a>(&amp;mut self, red: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, green: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, blue: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, alpha: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.set_source' class='method'><code>fn <a href='#method.set_source' class='fnname'>set_source</a>(&amp;mut self, source: &amp;mut <a class='struct' href='../cairo/pattern/struct.Pattern.html' title='cairo::pattern::Pattern'>Pattern</a>)</code></h4>
+<h4 id='method.set_source_surface' class='method'><code>fn <a href='#method.set_source_surface' class='fnname'>set_source_surface</a>(&amp;mut self, surface: &amp;mut <a class='struct' href='../cairo/surface/struct.Surface.html' title='cairo::surface::Surface'>Surface</a>, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.get_source' class='method'><code>fn <a href='#method.get_source' class='fnname'>get_source</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/pattern/struct.Pattern.html' title='cairo::pattern::Pattern'>Pattern</a></code></h4>
+<h4 id='method.set_antialias' class='method'><code>fn <a href='#method.set_antialias' class='fnname'>set_antialias</a>(&amp;mut self, antialias: <a class='enum' href='../cairo/antialias/enum.Antialias.html' title='cairo::antialias::Antialias'>Antialias</a>)</code></h4>
+<h4 id='method.get_antialias' class='method'><code>fn <a href='#method.get_antialias' class='fnname'>get_antialias</a>(&amp;mut self) -&gt; <a class='enum' href='../cairo/antialias/enum.Antialias.html' title='cairo::antialias::Antialias'>Antialias</a></code></h4>
+<h4 id='method.set_dash' class='method'><code>fn <a href='#method.set_dash' class='fnname'>set_dash</a>(&amp;mut self, dashes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, offset: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.get_dash_count' class='method'><code>fn <a href='#method.get_dash_count' class='fnname'>get_dash_count</a>(&amp;mut self) -&gt; <a class='type' href='../libc/type.c_int.html' title='libc::c_int'>c_int</a></code></h4>
+<h4 id='method.get_dash' class='method'><code>fn <a href='#method.get_dash' class='fnname'>get_dash</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt;, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.set_fill_rule' class='method'><code>fn <a href='#method.set_fill_rule' class='fnname'>set_fill_rule</a>(&amp;mut self, fill_rule: <a class='enum' href='../cairo/fill_rule/enum.FillRule.html' title='cairo::fill_rule::FillRule'>FillRule</a>)</code></h4>
+<h4 id='method.get_fill_rule' class='method'><code>fn <a href='#method.get_fill_rule' class='fnname'>get_fill_rule</a>(&amp;mut self) -&gt; <a class='enum' href='../cairo/fill_rule/enum.FillRule.html' title='cairo::fill_rule::FillRule'>FillRule</a></code></h4>
+<h4 id='method.set_line_cap' class='method'><code>fn <a href='#method.set_line_cap' class='fnname'>set_line_cap</a>(&amp;mut self, line_cap: <a class='enum' href='../cairo/line_cap/enum.LineCap.html' title='cairo::line_cap::LineCap'>LineCap</a>)</code></h4>
+<h4 id='method.get_line_cap' class='method'><code>fn <a href='#method.get_line_cap' class='fnname'>get_line_cap</a>(&amp;mut self) -&gt; <a class='enum' href='../cairo/line_cap/enum.LineCap.html' title='cairo::line_cap::LineCap'>LineCap</a></code></h4>
+<h4 id='method.set_line_join' class='method'><code>fn <a href='#method.set_line_join' class='fnname'>set_line_join</a>(&amp;mut self, line_join: <a class='enum' href='../cairo/line_join/enum.LineJoin.html' title='cairo::line_join::LineJoin'>LineJoin</a>)</code></h4>
+<h4 id='method.get_line_join' class='method'><code>fn <a href='#method.get_line_join' class='fnname'>get_line_join</a>(&amp;mut self) -&gt; <a class='enum' href='../cairo/line_join/enum.LineJoin.html' title='cairo::line_join::LineJoin'>LineJoin</a></code></h4>
+<h4 id='method.set_line_width' class='method'><code>fn <a href='#method.set_line_width' class='fnname'>set_line_width</a>(&amp;mut self, width: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.get_line_width' class='method'><code>fn <a href='#method.get_line_width' class='fnname'>get_line_width</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+<h4 id='method.set_miter_limit' class='method'><code>fn <a href='#method.set_miter_limit' class='fnname'>set_miter_limit</a>(&amp;mut self, limit: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.get_miter_limit' class='method'><code>fn <a href='#method.get_miter_limit' class='fnname'>get_miter_limit</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+<h4 id='method.set_operator' class='method'><code>fn <a href='#method.set_operator' class='fnname'>set_operator</a>(&amp;mut self, operator: <a class='enum' href='../cairo/operator/enum.Operator.html' title='cairo::operator::Operator'>Operator</a>)</code></h4>
+<h4 id='method.get_operator' class='method'><code>fn <a href='#method.get_operator' class='fnname'>get_operator</a>(&amp;mut self) -&gt; <a class='enum' href='../cairo/operator/enum.Operator.html' title='cairo::operator::Operator'>Operator</a></code></h4>
+<h4 id='method.set_tolerance' class='method'><code>fn <a href='#method.set_tolerance' class='fnname'>set_tolerance</a>(&amp;mut self, tolerance: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.get_tolerance' class='method'><code>fn <a href='#method.get_tolerance' class='fnname'>get_tolerance</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></h4>
+<h4 id='method.clip' class='method'><code>fn <a href='#method.clip' class='fnname'>clip</a>(&amp;mut self)</code></h4>
+<h4 id='method.clip_preserve' class='method'><code>fn <a href='#method.clip_preserve' class='fnname'>clip_preserve</a>(&amp;mut self)</code></h4>
+<h4 id='method.clip_extents' class='method'><code>fn <a href='#method.clip_extents' class='fnname'>clip_extents</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.in_clip' class='method'><code>fn <a href='#method.in_clip' class='fnname'>in_clip</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.reset_clip' class='method'><code>fn <a href='#method.reset_clip' class='fnname'>reset_clip</a>(&amp;mut self)</code></h4>
+<h4 id='method.fill' class='method'><code>fn <a href='#method.fill' class='fnname'>fill</a>(&amp;mut self)</code></h4>
+<h4 id='method.fill_preserve' class='method'><code>fn <a href='#method.fill_preserve' class='fnname'>fill_preserve</a>(&amp;mut self)</code></h4>
+<h4 id='method.fill_extents' class='method'><code>fn <a href='#method.fill_extents' class='fnname'>fill_extents</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.in_fill' class='method'><code>fn <a href='#method.in_fill' class='fnname'>in_fill</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.mask' class='method'><code>fn <a href='#method.mask' class='fnname'>mask</a>(&amp;mut self, pattern: &amp;mut <a class='struct' href='../cairo/pattern/struct.Pattern.html' title='cairo::pattern::Pattern'>Pattern</a>)</code></h4>
+<h4 id='method.mask_surface' class='method'><code>fn <a href='#method.mask_surface' class='fnname'>mask_surface</a>(&amp;mut self, surface: &amp;mut <a class='struct' href='../cairo/surface/struct.Surface.html' title='cairo::surface::Surface'>Surface</a>, surface_x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, surface_y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.paint' class='method'><code>fn <a href='#method.paint' class='fnname'>paint</a>(&amp;mut self)</code></h4>
+<h4 id='method.paint_with_alpha' class='method'><code>fn <a href='#method.paint_with_alpha' class='fnname'>paint_with_alpha</a>(&amp;mut self, alpha: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.stroke' class='method'><code>fn <a href='#method.stroke' class='fnname'>stroke</a>(&amp;mut self)</code></h4>
+<h4 id='method.stroke_preserve' class='method'><code>fn <a href='#method.stroke_preserve' class='fnname'>stroke_preserve</a>(&amp;mut self)</code></h4>
+<h4 id='method.stroke_extents' class='method'><code>fn <a href='#method.stroke_extents' class='fnname'>stroke_extents</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.in_stroke' class='method'><code>fn <a href='#method.in_stroke' class='fnname'>in_stroke</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.copy_page' class='method'><code>fn <a href='#method.copy_page' class='fnname'>copy_page</a>(&amp;mut self)</code></h4>
+<h4 id='method.show_page' class='method'><code>fn <a href='#method.show_page' class='fnname'>show_page</a>(&amp;mut self)</code></h4>
+<h4 id='method.get_reference_count' class='method'><code>fn <a href='#method.get_reference_count' class='fnname'>get_reference_count</a>(&amp;mut self) -&gt; <a class='type' href='../libc/type.c_uint.html' title='libc::c_uint'>c_uint</a></code></h4>
+<h4 id='method.copy_path' class='method'><code>fn <a href='#method.copy_path' class='fnname'>copy_path</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/path/struct.Path.html' title='cairo::path::Path'>Path</a></code></h4>
+<h4 id='method.copy_path_flat' class='method'><code>fn <a href='#method.copy_path_flat' class='fnname'>copy_path_flat</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/path/struct.Path.html' title='cairo::path::Path'>Path</a></code></h4>
+<h4 id='method.append_path' class='method'><code>fn <a href='#method.append_path' class='fnname'>append_path</a>(&amp;mut self, path: &amp;<a class='struct' href='../cairo/path/struct.Path.html' title='cairo::path::Path'>Path</a>)</code></h4>
+<h4 id='method.has_current_point' class='method'><code>fn <a href='#method.has_current_point' class='fnname'>has_current_point</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.get_current_point' class='method'><code>fn <a href='#method.get_current_point' class='fnname'>get_current_point</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.new_path' class='method'><code>fn <a href='#method.new_path' class='fnname'>new_path</a>(&amp;mut self)</code></h4>
+<h4 id='method.new_sub_path' class='method'><code>fn <a href='#method.new_sub_path' class='fnname'>new_sub_path</a>(&amp;mut self)</code></h4>
+<h4 id='method.close_path' class='method'><code>fn <a href='#method.close_path' class='fnname'>close_path</a>(&amp;mut self)</code></h4>
+<h4 id='method.arc' class='method'><code>fn <a href='#method.arc' class='fnname'>arc</a>(&amp;mut self, xc: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, yc: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, radius: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, angle1: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, angle2: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.arc_negative' class='method'><code>fn <a href='#method.arc_negative' class='fnname'>arc_negative</a>(&amp;mut self, xc: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, yc: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, radius: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, angle1: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, angle2: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.curve_to' class='method'><code>fn <a href='#method.curve_to' class='fnname'>curve_to</a>(&amp;mut self, x1: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y1: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, x2: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y2: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, x3: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y3: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.line_to' class='method'><code>fn <a href='#method.line_to' class='fnname'>line_to</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.move_to' class='method'><code>fn <a href='#method.move_to' class='fnname'>move_to</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.rectangle' class='method'><code>fn <a href='#method.rectangle' class='fnname'>rectangle</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, width: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, height: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.glyph_path' class='method'><code>fn <a href='#method.glyph_path' class='fnname'>glyph_path</a>(&amp;mut self, glyphs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a class='struct' href='../cairo/font/struct.Glyph.html' title='cairo::font::Glyph'>Glyph</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>)</code></h4>
+<h4 id='method.text_path' class='method'><code>fn <a href='#method.text_path' class='fnname'>text_path</a>(&amp;mut self, text_path: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
+<h4 id='method.rel_curve_to' class='method'><code>fn <a href='#method.rel_curve_to' class='fnname'>rel_curve_to</a>(&amp;mut self, dx1: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dy1: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dx2: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dy2: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dx3: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dy3: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.rel_line_to' class='method'><code>fn <a href='#method.rel_line_to' class='fnname'>rel_line_to</a>(&amp;mut self, dx: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dy: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.rel_move_to' class='method'><code>fn <a href='#method.rel_move_to' class='fnname'>rel_move_to</a>(&amp;mut self, dx: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dy: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.path_extents' class='method'><code>fn <a href='#method.path_extents' class='fnname'>path_extents</a>(&amp;mut self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.translate' class='method'><code>fn <a href='#method.translate' class='fnname'>translate</a>(&amp;mut self, tx: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, ty: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.scale' class='method'><code>fn <a href='#method.scale' class='fnname'>scale</a>(&amp;mut self, sx: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, sy: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.rotate' class='method'><code>fn <a href='#method.rotate' class='fnname'>rotate</a>(&amp;mut self, angle: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.transform' class='method'><code>fn <a href='#method.transform' class='fnname'>transform</a>(&amp;mut self, matrix: &amp;mut <a class='struct' href='../cairo/matrix/struct.Matrix.html' title='cairo::matrix::Matrix'>Matrix</a>)</code></h4>
+<h4 id='method.set_matrix' class='method'><code>fn <a href='#method.set_matrix' class='fnname'>set_matrix</a>(&amp;mut self, matrix: &amp;mut <a class='struct' href='../cairo/matrix/struct.Matrix.html' title='cairo::matrix::Matrix'>Matrix</a>)</code></h4>
+<h4 id='method.get_matrix' class='method'><code>fn <a href='#method.get_matrix' class='fnname'>get_matrix</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/matrix/struct.Matrix.html' title='cairo::matrix::Matrix'>Matrix</a></code></h4>
+<h4 id='method.identity_matrix' class='method'><code>fn <a href='#method.identity_matrix' class='fnname'>identity_matrix</a>(&amp;mut self)</code></h4>
+<h4 id='method.user_to_device' class='method'><code>fn <a href='#method.user_to_device' class='fnname'>user_to_device</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.user_to_device_distance' class='method'><code>fn <a href='#method.user_to_device_distance' class='fnname'>user_to_device_distance</a>(&amp;mut self, dx: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dy: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.device_to_user' class='method'><code>fn <a href='#method.device_to_user' class='fnname'>device_to_user</a>(&amp;mut self, x: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, y: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.device_to_user_distance' class='method'><code>fn <a href='#method.device_to_user_distance' class='fnname'>device_to_user_distance</a>(&amp;mut self, dx: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, dy: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<h4 id='method.select_font_face' class='method'><code>fn <a href='#method.select_font_face' class='fnname'>select_font_face</a>(&amp;mut self, family: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, slant: <a class='enum' href='../cairo/font/slant/enum.Slant.html' title='cairo::font::slant::Slant'>Slant</a>, weight: <a class='enum' href='../cairo/font/weight/enum.Weight.html' title='cairo::font::weight::Weight'>Weight</a>)</code></h4>
+<h4 id='method.set_font_size' class='method'><code>fn <a href='#method.set_font_size' class='fnname'>set_font_size</a>(&amp;mut self, size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>)</code></h4>
+<h4 id='method.set_font_matrix' class='method'><code>fn <a href='#method.set_font_matrix' class='fnname'>set_font_matrix</a>(&amp;mut self, matrix: &amp;mut <a class='struct' href='../cairo/matrix/struct.Matrix.html' title='cairo::matrix::Matrix'>Matrix</a>)</code></h4>
+<h4 id='method.get_font_matrix' class='method'><code>fn <a href='#method.get_font_matrix' class='fnname'>get_font_matrix</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/matrix/struct.Matrix.html' title='cairo::matrix::Matrix'>Matrix</a></code></h4>
+<h4 id='method.set_font_options' class='method'><code>fn <a href='#method.set_font_options' class='fnname'>set_font_options</a>(&amp;mut self, options: &amp;mut <a class='struct' href='../cairo/font/struct.Options.html' title='cairo::font::Options'>Options</a>)</code></h4>
+<h4 id='method.get_font_options' class='method'><code>fn <a href='#method.get_font_options' class='fnname'>get_font_options</a>(&amp;mut self, options: &amp;mut <a class='struct' href='../cairo/font/struct.Options.html' title='cairo::font::Options'>Options</a>)</code></h4>
+<h4 id='method.set_font_face' class='method'><code>fn <a href='#method.set_font_face' class='fnname'>set_font_face</a>(&amp;mut self, font_face: &amp;mut <a class='struct' href='../cairo/font/struct.FontFace.html' title='cairo::font::FontFace'>FontFace</a>)</code></h4>
+<h4 id='method.get_font_face' class='method'><code>fn <a href='#method.get_font_face' class='fnname'>get_font_face</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/font/struct.FontFace.html' title='cairo::font::FontFace'>FontFace</a></code></h4>
+<h4 id='method.set_scaled_font' class='method'><code>fn <a href='#method.set_scaled_font' class='fnname'>set_scaled_font</a>(&amp;mut self, scaled_font: &amp;mut <a class='struct' href='../cairo/font/struct.ScaledFont.html' title='cairo::font::ScaledFont'>ScaledFont</a>)</code></h4>
+<h4 id='method.get_scaled_font' class='method'><code>fn <a href='#method.get_scaled_font' class='fnname'>get_scaled_font</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/font/struct.ScaledFont.html' title='cairo::font::ScaledFont'>ScaledFont</a></code></h4>
+<h4 id='method.show_text' class='method'><code>fn <a href='#method.show_text' class='fnname'>show_text</a>(&amp;mut self, utf8: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
+<h4 id='method.show_glyphs' class='method'><code>fn <a href='#method.show_glyphs' class='fnname'>show_glyphs</a>(&amp;mut self, glyphs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='struct' href='../cairo/font/struct.Glyph.html' title='cairo::font::Glyph'>Glyph</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>)</code></h4>
+<h4 id='method.show_text_glyphs' class='method'><code>fn <a href='#method.show_text_glyphs' class='fnname'>show_text_glyphs</a>(&amp;mut self, utf8: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, glyphs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a class='struct' href='../cairo/font/struct.Glyph.html' title='cairo::font::Glyph'>Glyph</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, clusters: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a class='struct' href='../cairo/font/struct.Cluster.html' title='cairo::font::Cluster'>Cluster</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, cluster_flags: <a class='enum' href='../cairo/font/cluster_flags/enum.ClusterFlags.html' title='cairo::font::cluster_flags::ClusterFlags'>ClusterFlags</a>)</code></h4>
+<h4 id='method.font_extents' class='method'><code>fn <a href='#method.font_extents' class='fnname'>font_extents</a>(&amp;mut self) -&gt; <a class='struct' href='../cairo/font/struct.FontExtents.html' title='cairo::font::FontExtents'>FontExtents</a></code></h4>
+<h4 id='method.text_extents' class='method'><code>fn <a href='#method.text_extents' class='fnname'>text_extents</a>(&amp;mut self, utf8: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='struct' href='../cairo/font/struct.TextExtents.html' title='cairo::font::TextExtents'>TextExtents</a></code></h4>
+<h4 id='method.glyph_extents' class='method'><code>fn <a href='#method.glyph_extents' class='fnname'>glyph_extents</a>(&amp;mut self, glyphs: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='struct' href='../cairo/font/struct.Glyph.html' title='cairo::font::Glyph'>Glyph</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='struct' href='../cairo/font/struct.TextExtents.html' title='cairo::font::TextExtents'>TextExtents</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../cairo/struct.Cairo.html' title='cairo::Cairo'>Cairo</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-2237' class='srclink' href='../src/cairo/src/lib.rs.html#863-870' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../cairo/struct.Cairo.html' title='cairo::Cairo'>Cairo</a></code></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../cairo/struct.Cairo.html' title='cairo::Cairo'>Cairo</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-2244' class='srclink' href='../src/cairo/src/lib.rs.html#876-882' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html#tymethod.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+<div class='docblock'><p>A method called when the value goes out of scope. <a href="https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html#tymethod.drop">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "cairo";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

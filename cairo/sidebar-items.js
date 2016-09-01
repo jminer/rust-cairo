@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Status",""]],"mod":[["antialias",""],["device",""],["fill_rule",""],["font",""],["line_cap",""],["line_join",""],["matrix",""],["operator",""],["path",""],["pattern",""],["region",""],["surface",""]],"struct":[["Cairo",""]]});
