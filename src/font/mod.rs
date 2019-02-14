@@ -399,10 +399,10 @@ pub struct FontExtents {
 
 #[repr(C)]
 pub struct TextExtents {
-  x_bearing: f64,
-  y_bearing: f64,
-  width: f64,
-  height: f64,
-  max_x_advance: f64,
-  max_y_advance: f64
+  pub x_bearing: f64,
+  pub y_bearing: f64,
+  pub width: f64,
+  pub height: f64,
+  pub max_x_advance: f64,
+  pub max_y_advance: f64
 }

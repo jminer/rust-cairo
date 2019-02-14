@@ -25,9 +25,9 @@ impl Surface {
     }
   }
 
-  pub fn create_for_rectangle(x: f64, y: f64, width: f64, height: f64) -> Surface {
+  pub fn create_for_rectangle(&self, x: f64, y: f64, width: f64, height: f64) -> Surface {
     unsafe {
-      let foreign_result = cairo_surface_create_for_rectangle(x, y, width, height);
+      let foreign_result = cairo_surface_create_for_rectangle(self.opaque, x, y, width, height);
       return Surface { opaque: foreign_result as *mut libc::c_void };
     }
   }
@@ -217,7 +217,7 @@ impl Surface {
 
 extern {
   fn cairo_surface_create_similar_image(format: format::Format, width: libc::c_int, height: libc::c_int) -> *mut libc::c_void;
-  fn cairo_surface_create_for_rectangle(x: f64, y: f64, width: f64, height: f64) -> *mut libc::c_void;
+  fn cairo_surface_create_for_rectangle(self_arg: *mut libc::c_void, x: f64, y: f64, width: f64, height: f64) -> *mut libc::c_void;
   fn cairo_surface_status(self_arg: *mut libc::c_void) -> super::Status;
   fn cairo_surface_finish(self_arg: *mut libc::c_void);
   fn cairo_surface_flush(self_arg: *mut libc::c_void);
