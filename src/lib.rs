@@ -17,6 +17,7 @@ pub mod pattern;
 pub mod region;
 pub mod surface;
 
+#[derive(Debug)]
 #[repr(i32)]
 pub enum Status {
   Success = 0,
